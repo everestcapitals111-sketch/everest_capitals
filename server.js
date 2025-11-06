@@ -10,9 +10,10 @@ app.use('/uploads', express.static('uploads'));
 
 connectDB(process.env.MONGO_URI || 'mongodb://localhost:27017/everest');
 
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/client', require('./routes/client'));
-app.use('/api/admin', require('./routes/admin'));
+const authRoutes = require('./auth');
+const adminRoutes = require('./admin');
+const clientRoutes = require('./client');
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on ${PORT}`));
